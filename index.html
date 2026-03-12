@@ -22,36 +22,18 @@
         .font-comic { font-family: 'Comic Neue', cursive; }
         .font-bangers { font-family: 'Bangers', cursive; }
         .font-signature { font-family: 'Pinyon Script', cursive; }
-        .perspective-1000 { perspective: 1000px; }
-        .animate-bounce-slow { animation: bounce 3s infinite; }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(-5%); }
-            50% { transform: translateY(0); }
-        }
-        
-        /* Custom scrollbar for lyrics */
-        .lyrics-scroll::-webkit-scrollbar { width: 6px; }
-        .lyrics-scroll::-webkit-scrollbar-track { background: transparent; }
-        .lyrics-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-        .lyrics-scroll::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
+        .smooth-scroll { scroll-behavior: smooth; }
         .comic-panel {
             box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
             border: 3px solid black;
         }
-        
         @media (min-width: 640px) {
             .comic-panel {
                 box-shadow: 10px 10px 0px rgba(0,0,0,0.8);
                 border: 4px solid black;
             }
-        }
-
-        .smooth-scroll {
-            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -67,198 +49,153 @@
         );
         const ChevronLeft = (props) => <Icon {...props}><path d="m15 18-6-6 6-6"/></Icon>;
         const ChevronRight = (props) => <Icon {...props}><path d="m9 18 6-6-6-6"/></Icon>;
-        const ChevronDown = (props) => <Icon {...props}><path d="m6 9 6 6 6-6"/></Icon>;
         const Play = (props) => <Icon {...props}><polygon points="5 3 19 12 5 21 5 3"/></Icon>;
         const Pause = (props) => <Icon {...props}><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></Icon>;
         const Volume2 = (props) => <Icon {...props}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></Icon>;
         const VolumeX = (props) => <Icon {...props}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></Icon>;
         const BookOpen = (props) => <Icon {...props}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></Icon>;
         const Zap = (props) => <Icon {...props}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></Icon>;
-        const ZapOff = (props) => <Icon {...props}><polyline points="12.41 6.75 13 2 10.57 4.92"/><polyline points="18.57 12.91 21 10 15.66 10"/><polyline points="8 8 3 14 12 14 11 22 16 15.12"/><line x1="1" y1="1" x2="23" y2="23"/></Icon>;
         const Maximize = (props) => <Icon {...props}><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></Icon>;
-        const Minimize = (props) => <Icon {...props}><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></Icon>;
 
         // --- DATA ---
         const REPO_BASE_URL = "https://raw.githubusercontent.com/sinanseden-eng/common-people/main/";
-        const CACHE_BUSTER = "?v=24";
+        const CACHE_BUSTER = "?v=28"; 
 
         const pages = [
             {
                 id: 1,
                 type: "intro",
                 text: "COMMON PEOPLE",
-                subtext: "Interactive Comic Experience",
+                subtext: "Pulp - Interactive Comic",
                 image: `${REPO_BASE_URL}1.jpg${CACHE_BUSTER}`,
+                bgColor: "bg-black",
                 timestamp: 0 
             },
             {
                 id: 2,
-                lyrics: "She came from Greece, she had a thirst for knowledge\nShe studied sculpture at Saint Martin's College",
+                lyrics: "She came from Greece, she had a thirst for knowledge\nShe studied sculpture at Saint Martin's College\nThat's where I caught her eye",
                 image: `${REPO_BASE_URL}2.jpg${CACHE_BUSTER}`, 
-                bgColor: "bg-amber-100",
-                timestamp: 8,
-                noScroll: true
+                bgColor: "bg-slate-800",
+                timestamp: 17,
+                slowScroll: true
             },
             {
                 id: 3,
-                lyrics: "That's where I caught her eye\nShe told me that her Dad was loaded",
+                lyrics: "She told me that her dad was loaded\nI said, in that case I'll have rum and coca-cola\nShe said fine",
                 image: `${REPO_BASE_URL}3.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-amber-900",
-                timestamp: 17,
-                noScroll: true
+                bgColor: "bg-amber-950",
+                timestamp: 32
             },
             {
                 id: 4,
-                lyrics: "I said \"In that case, I'll have rum and Coca-Cola\"\nShe said \"fine\"\nAnd then in thirty seconds time she said",
+                lyrics: "And then in thirty seconds time she said:\nI wanna live like common people\nI wanna do whatever common people do",
                 image: `${REPO_BASE_URL}4.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-green-900",
-                timestamp: 25,
-                noScroll: true
+                bgColor: "bg-emerald-950",
+                timestamp: 48,
+                slowScroll: true
             },
             {
                 id: 5,
-                lyrics: "\"I wanna live like common people\nI wanna do whatever common people do\nWanna sleep with common people\nI wanna sleep with common people like you\"\nWell,​ what else could I do?\nI said \"I'll, I'll see what I can do\"",
+                lyrics: "I wanna sleep with common people\nI wanna sleep with common people like you\nWell what else could I do?\nI said, I'll see what I can do",
                 image: `${REPO_BASE_URL}5.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-slate-500",
-                timestamp: 35
+                bgColor: "bg-blue-950",
+                timestamp: 63,
+                slowScroll: true
             },
             {
                 id: 6,
                 lyrics: "I took her to a supermarket\nI don't know why but I had to start it somewhere\nSo it started there",
-                image: `${REPO_BASE_URL}7.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-red-100",
-                timestamp: 60,
-                slowScroll: true
+                image: `${REPO_BASE_URL}6.jpg${CACHE_BUSTER}`,
+                bgColor: "bg-zinc-800",
+                timestamp: 93
             },
             {
                 id: 7,
-                lyrics: "I said, \"Pretend you got no money\"\nAnd she just laughed and said, \"Oh, you're so funny\"\nI said, \"Yeah, well, I can't see anyone else smiling in here\"\nAre you sure?",
+                lyrics: "I said pretend you've got no money\nShe just laughed and said oh you're so funny\nI said yeah?\nWell I can't see anyone else smiling in here",
                 image: `${REPO_BASE_URL}7.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-red-300",
-                timestamp: 67,
+                bgColor: "bg-red-950",
+                timestamp: 108,
                 slowScroll: true
             },
             {
                 id: 8,
-                lyrics: "You wanna live like common people\nYou wanna see whatever common people see\nWanna sleep with common people\nYou wanna sleep with common people like me?\nBut she didn’t understand\nAnd she just smiled and held my hand",
+                lyrics: "Are you sure you wanna live like common people\nYou wanna see whatever common people see\nYou wanna sleep with common people like me?",
                 image: `${REPO_BASE_URL}8.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-blue-900",
-                timestamp: 87
+                bgColor: "bg-indigo-950",
+                timestamp: 124,
+                slowScroll: true
             },
             {
                 id: 9,
-                lyrics: "Oh, rent a flat above a shop\nAnd cut your hair and get a job\nAnd smoke some fags and play some pool\nPretend you never went to school",
-                image: `${REPO_BASE_URL}6.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-yellow-100",
-                timestamp: 111.5
+                lyrics: "But still you'll never get it right\n'Cause when you're laid in bed at night\nWatching roaches climb the wall\nIf you called your dad he could stop it all, yeah",
+                image: `${REPO_BASE_URL}9.jpg${CACHE_BUSTER}`, 
+                bgColor: "bg-slate-900",
+                timestamp: 155,
+                superSlowScroll: true
             },
             {
                 id: 10,
-                lyrics: "But still you'll never get it right\n'Cause when you're laid in bed at night\nWatching roaches climb the wall\nIf you called your dad he could stop it all, yeah\nYou'll never live like common people\nYou'll never do whatever common people do\nNever fail like common people\nYou'll never watch your life slide out of view",
-                image: `${REPO_BASE_URL}9.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-slate-900",
-                timestamp: 123
+                lyrics: "Sing along with the common people\nSing along and it might just get you through\nLaugh along with the common people\nLaugh along even though they're laughing at you",
+                image: `${REPO_BASE_URL}10.jpg${CACHE_BUSTER}`,
+                bgColor: "bg-orange-950",
+                timestamp: 185,
+                slowScroll: true
             },
             {
                 id: 11,
-                lyrics: "And then dance and drink and screw\nBecause there's nothing else to do\nOh!",
-                image: `${REPO_BASE_URL}10.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-orange-900",
-                timestamp: 152 
+                lyrics: "Like a dog lying in a corner\nThey will bite you and never warn you\nLook out, they'll tear your insides out\n'Cause everybody hates a tourist",
+                image: `${REPO_BASE_URL}11.jpg${CACHE_BUSTER}`,
+                bgColor: "bg-red-900",
+                timestamp: 229,
+                slowScroll: true
             },
             {
                 id: 12,
-                lyrics: "Sing along with the common people\nSing along and it might just get you through\nLaugh along with the common people\nLaugh along, even though they're laughing at you\nAnd the stupid things that you do\nBecause you think that poor is cool",
-                image: `${REPO_BASE_URL}11.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-red-900",
-                timestamp: 185 
+                lyrics: "Rent a flat above a shop\nCut your hair and get a job\nSmoke some fags and play some pool\nPretend you never went to school",
+                image: `${REPO_BASE_URL}12.jpg${CACHE_BUSTER}`,
+                bgColor: "bg-purple-950",
+                timestamp: 259
             },
             {
                 id: 13,
-                lyrics: "Like a dog lying in a corner\nThey will bite you and never warn you\nLook out, they'll tear your insides out\n'Cause everybody hates a tourist\nEspecially one who thinks it's all such a laugh\nYeah, and the chip stains and grease will come out in the bath",
-                image: `${REPO_BASE_URL}12.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-purple-900",
-                timestamp: 208
-            },
-            {
-                id: 13.5, 
-                lyrics: "You will never understand\nHow it feels to live your life\nWith no meaning or control\nAnd with nowhere left to go\nYou are amazed that they exist\nAnd they burn so bright whilst you can only wonder why\nRent a flat above a shop\nCut your hair and get a job\nAnd smoke some fags and play some pool\nPretend you never went to school\nBut still you'll never get it right\n'Cause when you're laid in bed at night\nWatching roaches climb the wall\nIf you called your dad he could stop it all, yeah",
-                image: `${REPO_BASE_URL}12.jpg${CACHE_BUSTER}`, 
-                bgColor: "bg-purple-950",
-                timestamp: 240 
+                lyrics: "I wanna live with common people like you\nI wanna live with common people like you\nI wanna live with common people like you...",
+                image: `${REPO_BASE_URL}13.jpg${CACHE_BUSTER}`,
+                bgColor: "bg-pink-900",
+                timestamp: 275,
+                superSlowScroll: true
             },
             {
                 id: 14,
-                lyrics: "Wanna live with common people like you\nWanna live with common people like you\nWanna live with common people like you\nWanna live with common people like you\nWanna live with common people like you\nWanna live with common people like you\nWanna live with common people like you",
-                image: `${REPO_BASE_URL}13.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-cyan-800",
-                timestamp: 307 
-            },
-            {
-                id: 15,
-                lyrics: "La, la, la, la\nOoh, la, la, la, la\nOoh, la, la, la, la\nOoh, la, la-la-la-la, la, oh yeah",
+                lyrics: "You'll never live like common people\nYou'll never do what common people do...\nNever fail like common people\nYou'll never watch your life slide out of view",
                 image: `${REPO_BASE_URL}14.jpg${CACHE_BUSTER}`,
-                bgColor: "bg-blue-950",
-                timestamp: 325 
+                bgColor: "bg-slate-950",
+                timestamp: 320,
+                slowScroll: true
             }
         ];
 
-        // --- APP ---
         const ComicReader = () => {
             const [currentPage, setCurrentPage] = useState(0);
             const [isPlaying, setIsPlaying] = useState(false);
             const [isMuted, setIsMuted] = useState(false);
             const [audioStatus, setAudioStatus] = useState('loading');
             const [autoFlip, setAutoFlip] = useState(true);
-            const [isImmersive, setIsImmersive] = useState(false); // Controls Header hiding & Image Fitting
+            const [isImmersive, setIsImmersive] = useState(false);
             const [currentTime, setCurrentTime] = useState(0);
+            const [duration, setDuration] = useState(0);
             
             const audioRef = useRef(null);
             const lyricScrollRef = useRef(null);
-
             const totalPages = pages.length;
-            const defaultAudioUrl = "https://github.com/sinanseden-eng/common-people/raw/main/common_people.mp3";
-
-            // Fullscreen & Immersive Mode Logic
-            const toggleImmersive = async () => {
-                if (!document.fullscreenElement) {
-                    try {
-                        await document.documentElement.requestFullscreen();
-                        setIsImmersive(true);
-                    } catch (err) {
-                        console.error("Fullscreen API error:", err);
-                        setIsImmersive(true); // Fallback to just hiding header if fullscreen fails
-                    }
-                } else {
-                    if (document.exitFullscreen) {
-                        await document.exitFullscreen();
-                    }
-                    setIsImmersive(false);
-                }
-            };
-
-            // Keeps state in sync if user presses ESC key or mobile back gesture
-            useEffect(() => {
-                const handleFullscreenChange = () => {
-                    setIsImmersive(!!document.fullscreenElement);
-                };
-                document.addEventListener('fullscreenchange', handleFullscreenChange);
-                return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-            }, []);
+            const defaultAudioUrl = "https://raw.githubusercontent.com/sinanseden-eng/common-people/main/Common%20People.mp3?v=26";
 
             const togglePlay = () => {
                 if (audioRef.current) {
-                    if (isPlaying) {
-                        audioRef.current.pause();
-                    } else {
-                        audioRef.current.play().catch(e => setAudioStatus('error'));
-                    }
+                    if (isPlaying) audioRef.current.pause();
+                    else audioRef.current.play().catch(() => setAudioStatus('error'));
                     setIsPlaying(!isPlaying);
                 }
             };
-
-            const nextPage = () => currentPage < totalPages - 1 && setCurrentPage(currentPage + 1);
-            const prevPage = () => currentPage > 0 && setCurrentPage(currentPage - 1);
 
             const handleTimeUpdate = () => {
                 if (!audioRef.current) return;
@@ -274,36 +211,23 @@
                 if (activeIndex !== currentPage) setCurrentPage(activeIndex);
             };
 
-            // SYNC LOGIC: Auto-scroll lyrics based on progress in current panel
             useEffect(() => {
                 const container = lyricScrollRef.current;
                 if (!container) return;
-                
                 const currentData = pages[currentPage];
-                
-                if (currentData.noScroll) {
-                    container.scrollTop = 0;
-                    return;
-                }
-
                 const nextData = pages[currentPage + 1];
                 const startTime = currentData.timestamp;
-                const endTime = nextData ? nextData.timestamp : (audioRef.current?.duration || startTime + 30);
+                const endTime = nextData ? nextData.timestamp : (audioRef.current?.duration || startTime + 20);
                 
-                const duration = endTime - startTime;
+                const durationElapsed = endTime - startTime;
                 const elapsed = currentTime - startTime;
                 
-                if (elapsed >= 0 && duration > 0) {
-                    let progress = elapsed / duration;
-                    
-                    if (currentData.slowScroll) {
-                        progress = Math.pow(progress, 1.4); 
-                    }
-
+                if (elapsed >= 0 && durationElapsed > 0) {
+                    let progress = elapsed / durationElapsed;
+                    if (currentData.superSlowScroll) progress = Math.pow(progress, 2.5); 
+                    else if (currentData.slowScroll) progress = Math.pow(progress, 1.4); 
                     const maxScroll = container.scrollHeight - container.clientHeight;
-                    if (maxScroll > 0) {
-                        container.scrollTop = maxScroll * progress;
-                    }
+                    if (maxScroll > 0) container.scrollTop = maxScroll * progress;
                 }
             }, [currentTime, currentPage]);
 
@@ -319,51 +243,38 @@
             const currentData = pages[currentPage];
 
             return (
-                <div className="flex flex-col h-[100dvh] bg-gray-950 text-white font-sans overflow-hidden relative">
+                <div className="flex flex-col h-[100dvh] bg-gray-950 text-white font-sans overflow-hidden">
                     <audio 
-                        ref={audioRef} loop preload="auto" src={defaultAudioUrl}
-                        onTimeUpdate={handleTimeUpdate} 
+                        ref={audioRef} 
+                        loop 
+                        preload="auto" 
+                        src={defaultAudioUrl}
+                        onTimeUpdate={handleTimeUpdate}
+                        onLoadedMetadata={(e) => setDuration(e.target.duration)}
                         onCanPlay={() => setAudioStatus('ready')}
                         onError={() => setAudioStatus('error')}
                     />
 
-                    {/* Immersive Trigger Dropdown (When Header is Hidden) */}
-                    {isImmersive && (
-                        <button 
-                            onClick={toggleImmersive}
-                            className="absolute top-2 left-2 z-50 bg-gray-900/50 text-white/60 px-3 py-1.5 rounded-lg border border-gray-700 shadow-md hover:text-pink-500 hover:bg-gray-900/95 transition-all flex items-center gap-1.5 animate-in fade-in backdrop-blur-md"
-                            title="Exit Fullscreen & Show Menu"
-                        >
-                            <ChevronDown size={14} />
-                            <span className="text-[10px] font-bold tracking-wider">MENU</span>
-                        </button>
-                    )}
-
                     {/* Header */}
-                    <header className={`h-14 sm:h-16 shrink-0 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-2 sm:px-4 z-40 transition-transform duration-300 ease-in-out ${isImmersive ? '-translate-y-full absolute top-0 w-full' : 'translate-y-0 relative'}`}>
-                        <div className="flex items-center space-x-2 text-pink-500">
-                            <BookOpen size={20} className="sm:w-6 sm:h-6" />
-                            <span className="font-bangers text-xl sm:text-2xl tracking-widest hidden sm:block">PULP COMICS</span>
+                    <header className={`h-14 sm:h-16 shrink-0 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-4 z-40 transition-transform duration-300 ${isImmersive ? '-translate-y-full absolute w-full' : 'relative'}`}>
+                        <div className="flex items-center space-x-2 text-pink-500 shrink-0">
+                            <BookOpen size={20} />
+                            <div className="hidden sm:flex flex-col">
+                                <span className="font-bangers text-xl tracking-widest leading-none">COMMON PEOPLE</span>
+                                <span className="font-comic text-[10px] text-pink-300 uppercase mt-0.5">Interactive Experience</span>
+                            </div>
                         </div>
                         
-                        {/* Play Controls Box */}
-                        <div className="flex items-center gap-2 sm:gap-4 bg-black/40 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-gray-800 shadow-inner">
-                            {/* User Guidance Label */}
+                        <div className="flex items-center gap-4 bg-black/40 px-4 py-2 rounded-full border border-gray-800 shadow-inner">
                             <div className="hidden md:flex items-center border-r border-gray-700 pr-3 mr-1">
                                 <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse mr-2 shadow-[0_0_8px_rgba(236,72,153,0.8)]"></span>
-                                <span className="text-[10px] font-bold text-gray-300 tracking-widest uppercase">
-                                    Play & Sync
-                                </span>
+                                <span className="text-[10px] font-bold text-gray-300 tracking-widest uppercase">Play & Sync</span>
                             </div>
-
-                            <button onClick={toggleImmersive} className="p-1 text-gray-400 hover:text-white transition-colors" title="Full Screen Immersive Mode">
-                                <Maximize size={18}/>
-                            </button>
                             <button onClick={() => setAutoFlip(!autoFlip)} className={`p-1 ${autoFlip ? 'text-green-500' : 'text-gray-500'}`} title="Auto-Flip Toggle"><Zap size={18}/></button>
-                            <button onClick={togglePlay} className="text-white hover:text-pink-500 transition-colors px-1">
+                            <button onClick={togglePlay} className="text-white hover:text-pink-500 transition-colors">
                                 {isPlaying ? <Pause size={22} /> : <Play size={22} />}
                             </button>
-                            <button onClick={() => { if(audioRef.current) { audioRef.current.muted = !isMuted; setIsMuted(!isMuted); } }} className="p-1 text-gray-400 hover:text-white transition-colors">
+                            <button onClick={() => { if(audioRef.current) { audioRef.current.muted = !isMuted; setIsMuted(!isMuted); } }} className="p-1 text-gray-400 hover:text-white">
                                 {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
                             </button>
                         </div>
@@ -373,50 +284,36 @@
 
                     {/* Main Content */}
                     <main className="flex-1 min-h-0 relative flex items-center justify-center p-2 sm:p-4 w-full">
-                        <button onClick={prevPage} className="absolute left-2 sm:left-4 z-30 p-1 sm:p-2 bg-black/50 text-white/50 hover:text-white rounded-full hover:bg-pink-500 transition-colors"><ChevronLeft size={28}/></button>
-                        <button onClick={nextPage} className="absolute right-2 sm:right-4 z-30 p-1 sm:p-2 bg-black/50 text-white/50 hover:text-white rounded-full hover:bg-pink-500 transition-colors"><ChevronRight size={28}/></button>
+                        <button onClick={() => currentPage > 0 && setCurrentPage(currentPage - 1)} className="absolute left-2 sm:left-4 z-30 p-2 bg-black/50 text-white/50 hover:text-white rounded-full transition-colors"><ChevronLeft size={28}/></button>
+                        <button onClick={() => currentPage < totalPages - 1 && setCurrentPage(currentPage + 1)} className="absolute right-2 sm:right-4 z-30 p-2 bg-black/50 text-white/50 hover:text-white rounded-full transition-colors"><ChevronRight size={28}/></button>
 
                         <div className="w-full max-w-5xl h-full flex flex-col items-center justify-center">
-                            <div key={currentPage} className={`comic-panel relative w-full h-full bg-white flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-500 rounded-lg sm:rounded-none`}>
-                                
-                                {/* Image Area */}
-                                <div className={`flex-1 relative overflow-hidden ${currentData.bgColor || 'bg-gray-200'} flex items-center justify-center w-full min-h-0`}>
-                                    {currentData.image && (
-                                        <img 
-                                            src={currentData.image} 
-                                            className={`w-full h-full transition-all duration-300 ${isImmersive ? 'object-contain' : 'object-cover'}`}
-                                            alt="Comic Panel"
-                                        />
-                                    )}
+                            <div key={currentPage} className="comic-panel relative w-full h-full bg-white flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-500 rounded-lg">
+                                <div className={`flex-1 relative overflow-hidden ${currentData.bgColor || 'bg-gray-200'} flex items-center justify-center w-full min-h-0 p-4 sm:p-6`}>
+                                    {currentData.image && <img src={currentData.image} className="w-full h-full transition-all duration-300 object-contain" alt="Comic Panel" />}
                                     
-                                    <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '8px 8px' }}></div>
-                                    
+                                    {/* Responsive Title Overlay */}
                                     {currentData.type === 'intro' && (
-                                        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4 sm:p-8 text-center">
-                                            <h1 className="text-5xl sm:text-7xl font-black text-pink-500 font-bangers tracking-tighter drop-shadow-[0_4px_0_rgba(255,255,255,1)] transform -rotate-3 mb-2 sm:mb-4">COMMON</h1>
-                                            <h1 className="text-5xl sm:text-7xl font-black text-white font-bangers tracking-tighter drop-shadow-[0_4px_0_rgba(236,72,153,1)] transform rotate-2">PEOPLE</h1>
-                                            <p className="mt-4 sm:mt-8 font-comic text-lg sm:text-xl text-pink-200 italic">"Sing along and it might just get you through..."</p>
+                                        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-transparent flex flex-col items-center justify-start pt-12 sm:pt-20 p-4 text-center pointer-events-none">
+                                            <h1 className="text-5xl sm:text-7xl font-black text-pink-500 font-bangers tracking-tighter transform -rotate-3 mb-2 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">COMMON</h1>
+                                            <h1 className="text-5xl sm:text-7xl font-black text-white font-bangers tracking-tighter transform rotate-2 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">PEOPLE</h1>
                                         </div>
                                     )}
                                 </div>
-
-                                {/* Lyric Area */}
+                                
                                 {currentData.type !== 'intro' && (
-                                    <div className="shrink-0 bg-white border-t-2 sm:border-t-4 border-black p-2 sm:p-5 landscape:p-2 flex flex-col items-center justify-center text-center relative overflow-hidden h-[35%] min-h-[90px] max-h-[180px] landscape:h-[30%] landscape:min-h-[70px]">
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-0 h-0 border-l-[10px] sm:border-l-[15px] landscape:border-l-[8px] border-l-transparent border-r-[10px] sm:border-r-[15px] landscape:border-r-[8px] border-r-transparent border-b-[10px] sm:border-b-[15px] landscape:border-b-[8px] border-b-white"></div>
-                                        <div 
-                                            ref={lyricScrollRef}
-                                            className="lyrics-scroll overflow-y-auto w-full px-2 sm:px-4 h-full smooth-scroll no-scrollbar"
-                                        >
-                                            <div className="font-comic text-black text-base sm:text-xl md:text-2xl landscape:text-sm landscape:sm:text-lg font-bold leading-snug py-1 sm:py-4 landscape:py-1">
-                                                {currentData.lyrics.split('\n').map((line, i) => <p key={i} className="mb-1 sm:mb-2 landscape:mb-1">{line}</p>)}
-                                                {!currentData.noScroll && <div className="h-24 sm:h-40 landscape:h-20"></div>}
+                                    <div className="shrink-0 bg-white border-t-2 sm:border-t-4 border-black p-3 sm:p-6 flex flex-col items-center justify-center text-center relative h-[30%] min-h-[110px] max-h-[190px]">
+                                        <div ref={lyricScrollRef} className="no-scrollbar overflow-y-auto w-full px-2 sm:px-6 h-full smooth-scroll">
+                                            <div className="font-comic text-black text-lg sm:text-xl md:text-2xl font-bold py-2 sm:py-4">
+                                                {currentData.lyrics.split('\n').map((line, i) => <p key={i} className="mb-1 sm:mb-2">{line}</p>)}
+                                                <div className="h-32"></div>
                                             </div>
                                         </div>
                                     </div>
                                 )}
-
-                                <div className="absolute bottom-2 right-4 sm:bottom-4 sm:right-6 font-signature text-2xl sm:text-4xl text-black/40 pointer-events-none">Sinan</div>
+                                
+                                {/* Signature relocated to bottom-left to avoid right-corner details */}
+                                <div className="absolute bottom-2 left-6 font-signature text-2xl sm:text-4xl text-black/40 pointer-events-none">Sinan</div>
                             </div>
                         </div>
                     </main>
