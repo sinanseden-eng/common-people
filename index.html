@@ -357,15 +357,15 @@
 
                                 {/* Lyric Area */}
                                 {currentData.type !== 'intro' && (
-                                    <div className="shrink-0 bg-white border-t-2 sm:border-t-4 border-black p-3 sm:p-5 flex flex-col items-center justify-center text-center relative overflow-hidden h-[120px] sm:h-[160px] md:h-[180px]">
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-0 h-0 border-l-[10px] sm:border-l-[15px] border-l-transparent border-r-[10px] sm:border-r-[15px] border-r-transparent border-b-[10px] sm:border-b-[15px] border-b-white"></div>
+                                    <div className="shrink-0 bg-white border-t-2 sm:border-t-4 border-black p-2 sm:p-5 landscape:p-2 flex flex-col items-center justify-center text-center relative overflow-hidden h-[35%] min-h-[90px] max-h-[180px] landscape:h-[30%] landscape:min-h-[70px]">
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-0 h-0 border-l-[10px] sm:border-l-[15px] landscape:border-l-[8px] border-l-transparent border-r-[10px] sm:border-r-[15px] landscape:border-r-[8px] border-r-transparent border-b-[10px] sm:border-b-[15px] landscape:border-b-[8px] border-b-white"></div>
                                         <div 
                                             ref={lyricScrollRef}
                                             className="lyrics-scroll overflow-y-auto w-full px-2 sm:px-4 h-full smooth-scroll no-scrollbar"
                                         >
-                                            <div className="font-comic text-black text-base sm:text-xl md:text-2xl font-bold leading-snug py-2 sm:py-4">
-                                                {currentData.lyrics.split('\n').map((line, i) => <p key={i} className="mb-1 sm:mb-2">{line}</p>)}
-                                                {!currentData.noScroll && <div className="h-24 sm:h-40"></div>}
+                                            <div className="font-comic text-black text-base sm:text-xl md:text-2xl landscape:text-sm landscape:sm:text-lg font-bold leading-snug py-1 sm:py-4 landscape:py-1">
+                                                {currentData.lyrics.split('\n').map((line, i) => <p key={i} className="mb-1 sm:mb-2 landscape:mb-1">{line}</p>)}
+                                                {!currentData.noScroll && <div className="h-24 sm:h-40 landscape:h-20"></div>}
                                             </div>
                                         </div>
                                     </div>
@@ -384,5 +384,3 @@
     </script>
 </body>
 </html>
-
-
